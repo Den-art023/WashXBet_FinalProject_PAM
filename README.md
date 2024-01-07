@@ -13,3 +13,8 @@ Terdapat:
  -Halaman Konfirmasi data user,kendaraan dan jenis treatment
  -Halaman Pesanan terkonfirmasi
 
+ create: denune
+ read: dimas
+ update: dimas
+ delete: denune
+
