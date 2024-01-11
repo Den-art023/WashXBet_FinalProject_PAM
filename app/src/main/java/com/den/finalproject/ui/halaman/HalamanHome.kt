@@ -24,10 +24,17 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.den.finalproject.R
+import com.den.finalproject.navigasi.DestinasiNavigasi
+
+object DestinasiHome : DestinasiNavigasi {
+    override val route = "home"
+    override val titleRes = R.string.app_name
+}
 
 @Composable
 fun Homepage(
-navigateToRent: () -> Unit,) {
+    navigateToRent: () -> Unit,
+) {
     Column(
         modifier = Modifier,
         verticalArrangement = Arrangement.SpaceBetween
