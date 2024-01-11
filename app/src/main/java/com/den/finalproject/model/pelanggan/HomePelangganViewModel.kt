@@ -1,4 +1,4 @@
-package com.den.finalproject.model
+package com.den.finalproject.model.pelanggan
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 
-class PelangganViewModel(private val repositoriPelanggan: RepositoriPelanggan) : ViewModel() {
+class HomePelangganViewModel(private val repositoriPelanggan: RepositoriPelanggan) : ViewModel() {
     companion object {
         private const val TIMEOUT_MILLIS = 5_000L
     }

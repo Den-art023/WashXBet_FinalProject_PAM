@@ -1,4 +1,4 @@
-package com.den.finalproject.ui.halaman
+package com.den.finalproject.ui.halaman.pelanggan
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -28,10 +28,10 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.den.finalproject.R
-import com.den.finalproject.model.DetailPelanggan
-import com.den.finalproject.model.InputViewModel
+import com.den.finalproject.model.pelanggan.DetailPelanggan
+import com.den.finalproject.model.pelanggan.InputViewModel
 import com.den.finalproject.model.PenyediaViewModel
-import com.den.finalproject.model.UIStatePelanggan
+import com.den.finalproject.model.pelanggan.UIStatePelanggan
 import com.den.finalproject.navigasi.DestinasiNavigasi
 import com.den.finalproject.navigasi.WashTopAppBar
 import kotlinx.coroutines.launch

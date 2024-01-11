@@ -1,10 +1,10 @@
-package com.den.finalproject.model
+package com.den.finalproject.model.pelanggan
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.den.finalproject.repositori.RepositoriPelanggan
-import com.den.finalproject.ui.halaman.DestinasiDetailPemesanan
+import com.den.finalproject.ui.halaman.pelanggan.DestinasiDetailPemesanan
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.filterNotNull

@@ -1,4 +1,4 @@
-package com.den.finalproject.model
+package com.den.finalproject.model.pelanggan
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf

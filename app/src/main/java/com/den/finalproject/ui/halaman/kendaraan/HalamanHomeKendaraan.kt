@@ -1,4 +1,4 @@
-package com.den.finalproject.ui.halaman
+package com.den.finalproject.ui.halaman.kendaraan
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -36,23 +36,23 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.den.finalproject.R
-import com.den.finalproject.data.Pelanggan
-import com.den.finalproject.model.PelangganViewModel
+import com.den.finalproject.data.Kendaraan
 import com.den.finalproject.model.PenyediaViewModel
+import com.den.finalproject.model.kendaraan.KendaraanViewModel
 import com.den.finalproject.navigasi.DestinasiNavigasi
 import com.den.finalproject.navigasi.WashTopAppBar
 
-object DestinasiPelanggan : DestinasiNavigasi {
-    override val route = "beli"
-    override val titleRes = R.string.pelanggan
+object DestinasiKendaran : DestinasiNavigasi {
+    override val route = "home_kendaraan"
+    override val titleRes = R.string.kendaraan
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PelangganScreen(
+fun KendaraanScreen(
     navigateToItemEntry: () -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: PelangganViewModel = viewModel(factory = PenyediaViewModel.Factory),
+    viewModel: KendaraanViewModel = viewModel(factory = PenyediaViewModel.Factory),
     onDetailClick: (Int) -> Unit = {},
 ) {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
@@ -60,13 +60,14 @@ fun PelangganScreen(
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             WashTopAppBar(
-                title = stringResource(DestinasiPelanggan.titleRes),
-                canNavigateBack = false, scrollBehavior = scrollBehavior
+                title = stringResource(DestinasiKendaran.titleRes), canNavigateBack = false,
+                scrollBehavior = scrollBehavior
             )
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = navigateToItemEntry, shape = MaterialTheme.shapes.medium,
+                onClick = navigateToItemEntry,
+                shape = MaterialTheme.shapes.medium,
                 modifier = Modifier.padding(20.dp)
             ) {
                 Icon(
@@ -76,19 +77,20 @@ fun PelangganScreen(
             }
         },
     ) { innerPadding ->
-        val uiStatePelanggan by viewModel.pelangganUiState.collectAsState()
-        BodyPelanggan(
-            itemPelanggan = uiStatePelanggan.listPelanggan,
+        val uiStateKendaraan by viewModel.kendaraanUiState.collectAsState()
+        BodyKendaraan(
+            itemKendaraan = uiStateKendaraan.listKendaraan,
             modifier = Modifier
                 .padding(innerPadding)
-                .fillMaxWidth(), onDetailClick = onDetailClick
+                .fillMaxWidth(),
+            onDetailClick = onDetailClick
         )
     }
 }
 
 @Composable
-fun BodyPelanggan(
-    itemPelanggan: List<Pelanggan>,
+fun BodyKendaraan(
+    itemKendaraan: List<Kendaraan>,
     modifier: Modifier = Modifier,
     onDetailClick: (Int) -> Unit = {}
 ) {
@@ -98,15 +100,13 @@ fun BodyPelanggan(
     ) {
         Card(
             //shape = MaterialTheme.shapes.medium,
-            shape = RoundedCornerShape(8.dp),
-            // modifier = modifier.size(280.dp, 240.dp)
+            shape = RoundedCornerShape(8.dp),            // modifier = modifier.size(280.dp, 240.dp)
             modifier = Modifier.padding(
                 10.dp,
                 5.dp,
                 10.dp,
                 10.dp
-            ),
-            //set card elevation of the card
+            ),            //set card elevation of the card
             elevation = CardDefaults.cardElevation(
                 defaultElevation = 10.dp,
             ),
@@ -125,14 +125,13 @@ fun BodyPelanggan(
                 )
                 Column(modifier = Modifier.padding(16.dp)) {
                     Text(
-                        text = "Data Pelanggan",
-                        style = MaterialTheme.typography.titleMedium,
-                        maxLines = 2,
+                        text = "Data Kendaraan",
+                        style = MaterialTheme.typography.titleMedium, maxLines = 2,
                         overflow = TextOverflow.Ellipsis
                     )
                     Spacer(modifier = Modifier.height(5.dp))
                     Text(
-                        text = "Silahkan Isi Data Pelanggan!",
+                        text = "Silahkan isi data kendaraan",
                         //maxLines = 1,
                         //overflow = TextOverflow.Ellipsis,
                         // style = MaterialTheme.typography.titleSmall,
@@ -140,41 +139,41 @@ fun BodyPelanggan(
                 }
             }
         }
-        if (itemPelanggan.isEmpty()) {
+        if (itemKendaraan.isEmpty()) {
             Text(
                 text = stringResource(id = R.string.desc), textAlign = TextAlign.Center,
                 style = MaterialTheme.typography.titleLarge,
             )
         } else {
-            ListPelanggan(
-                itemPelanggan = itemPelanggan, modifier = Modifier.padding(horizontal = 8.dp),
+            ListKendaraan(
+                itemKendaraan = itemKendaraan, modifier = Modifier.padding(horizontal = 8.dp),
                 onItemClick = { onDetailClick(it.id) })
         }
     }
 }
 
 @Composable
-fun ListPelanggan(
-    itemPelanggan: List<Pelanggan>,
+fun ListKendaraan(
+    itemKendaraan: List<Kendaraan>,
     modifier: Modifier = Modifier,
-    onItemClick: (Pelanggan) -> Unit
+    onItemClick: (Kendaraan) -> Unit
 ) {
     LazyColumn(modifier = Modifier) {
-        items(items = itemPelanggan, key = { it.id })
-        { buy ->
-            DataPelanggan(
-                pelanggan = buy,
+        items(items = itemKendaraan, key = { it.id })
+        { car ->
+            DataKendaraan(
+                kendaraan = car,
                 modifier = Modifier
                     .padding(8.dp)
-                    .clickable { onItemClick(buy) }
+                    .clickable { onItemClick(car) }
             )
         }
     }
 }
 
 @Composable
-fun DataPelanggan(
-    pelanggan: Pelanggan,
+fun DataKendaraan(
+    kendaraan: Kendaraan,
     modifier: Modifier = Modifier,
 ) {
     Card(
@@ -182,15 +181,15 @@ fun DataPelanggan(
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
     ) {
         Column(
-            modifier = Modifier.padding(20.dp), verticalArrangement = Arrangement.spacedBy(8.dp)
+            modifier = Modifier.padding(20.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             Text(
-                text = "Nama : " + pelanggan.nama,
+                text = "Merk : " + kendaraan.merk,
                 style = MaterialTheme.typography.titleLarge,
             )
             Text(
-                text =
-                "No HP : " + pelanggan.telpon,
+                text = "Nomor Kendaraan : " + kendaraan.plat,
                 style = MaterialTheme.typography.titleMedium,
             )
         }

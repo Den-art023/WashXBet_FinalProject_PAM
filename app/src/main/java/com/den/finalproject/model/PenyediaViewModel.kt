@@ -6,11 +6,15 @@ import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.den.finalproject.WashXBetApp
+import com.den.finalproject.model.pelanggan.DetailsViewModel
+import com.den.finalproject.model.pelanggan.EditPelangganViewModel
+import com.den.finalproject.model.pelanggan.InputViewModel
+import com.den.finalproject.model.pelanggan.HomePelangganViewModel
 
 object PenyediaViewModel {
     val Factory = viewModelFactory {
         initializer {
-            PelangganViewModel(washui().container.repositoriPelanggan)
+            HomePelangganViewModel(washui().container.repositoriPelanggan)
         }
         initializer {
             InputViewModel(washui().container.repositoriPelanggan)
@@ -22,7 +26,7 @@ object PenyediaViewModel {
             )
         }
         initializer {
-            EditViewModel(
+            EditPelangganViewModel(
                 createSavedStateHandle(), washui().container.repositoriPelanggan
             )
         }

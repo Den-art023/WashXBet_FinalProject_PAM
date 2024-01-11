@@ -1,4 +1,4 @@
-package com.den.finalproject.ui.halaman
+package com.den.finalproject.ui.halaman.kendaraan
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
@@ -35,41 +35,43 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.den.finalproject.R
-import com.den.finalproject.data.Pelanggan
-import com.den.finalproject.model.DetailsViewModel
-import com.den.finalproject.model.ItemDetailsUiState
+import com.den.finalproject.data.Kendaraan
 import com.den.finalproject.model.PenyediaViewModel
-import com.den.finalproject.model.toPelanggan
+import com.den.finalproject.model.kendaraan.DetailsKendaraanViewModel
+import com.den.finalproject.model.kendaraan.KendaraanDetailsUiState
+import com.den.finalproject.model.kendaraan.toKendaraan
 import com.den.finalproject.navigasi.DestinasiNavigasi
 import com.den.finalproject.navigasi.WashTopAppBar
 import kotlinx.coroutines.launch
 
-object DestinasiDetailPemesanan : DestinasiNavigasi {
-    override val route = "item_details"
-    override val titleRes = R.string.detail
+object DestinasiDetailKendaraan : DestinasiNavigasi {
+    override val route = "kendaraan_details"
+    override val titleRes = R.string.detail_kendaraan
     const val beliIdArg = "itemId"
     val routeWithArgs = "$route/{$beliIdArg}"
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DetailsScreen(
+fun KendaraanDetailsScreen(
     navigateToEditItem: (Int) -> Unit,
     navigasiBack: () -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: DetailsViewModel = viewModel(factory = PenyediaViewModel.Factory)
+    viewModel: DetailsKendaraanViewModel = viewModel(factory = PenyediaViewModel.Factory)
 ) {
     val uiState = viewModel.uiState.collectAsState()
     val coroutineScope = rememberCoroutineScope()
     Scaffold(
         topBar = {
             WashTopAppBar(
-                title = stringResource(DestinasiDetailPemesanan.titleRes),
-                canNavigateBack = true, navigateUp = navigasiBack
+                title = stringResource(DestinasiDetailKendaraan.titleRes),
+                canNavigateBack = true,
+                navigateUp = navigasiBack
             )
-        }, floatingActionButton = {
+        },
+        floatingActionButton = {
             FloatingActionButton(
-                onClick = { navigateToEditItem(uiState.value.detailPelanggan.id) },
+                onClick = { navigateToEditItem(uiState.value.detailKendaraan.id) },
                 shape = MaterialTheme.shapes.medium,
                 modifier = Modifier.padding(20.dp)
             ) {
@@ -78,11 +80,11 @@ fun DetailsScreen(
                     contentDescription = stringResource(R.string.update)
                 )
             }
-        }, modifier = modifier
+        },
+        modifier = modifier
     ) { innerPadding ->
         ItemDetailsBody(
-            itemDetailsUiState = uiState.value,
-            onDelete = {
+            kendaraanDetailsUiState = uiState.value, onDelete = {
                 coroutineScope.launch {
                     viewModel.deleteItem()
                     navigasiBack()
@@ -97,7 +99,7 @@ fun DetailsScreen(
 
 @Composable
 private fun ItemDetailsBody(
-    itemDetailsUiState: ItemDetailsUiState,
+    kendaraanDetailsUiState: KendaraanDetailsUiState,
     onDelete: () -> Unit,
     modifier: Modifier
 ) {
@@ -107,7 +109,7 @@ private fun ItemDetailsBody(
     ) {
         var deleteConfirmationRequired by rememberSaveable { mutableStateOf(false) }
         ItemDetails(
-            pelanggan = itemDetailsUiState.detailPelanggan.toPelanggan(),
+            kendaraan = kendaraanDetailsUiState.detailKendaraan.toKendaraan(),
             modifier = Modifier.fillMaxWidth()
         )
         OutlinedButton(
@@ -118,12 +120,10 @@ private fun ItemDetailsBody(
             Text(stringResource(R.string.delete))
         }
         if (deleteConfirmationRequired) {
-            DeleteConfirmationDialog(
-                onDeleteConfirm = {
-                    deleteConfirmationRequired = false
-                    onDelete()
-                },
-                onDeleteCancel = { deleteConfirmationRequired = false },
+            DeleteConfirmationDialog(onDeleteConfirm = {
+                deleteConfirmationRequired = false
+                onDelete()
+            }, onDeleteCancel = { deleteConfirmationRequired = false },
                 modifier = Modifier.padding(16.dp)
             )
         }
@@ -132,11 +132,12 @@ private fun ItemDetailsBody(
 
 @Composable
 fun ItemDetails(
-    pelanggan: Pelanggan,
+    kendaraan: Kendaraan,
     modifier: Modifier = Modifier
 ) {
     Card(
-        modifier = modifier, colors = CardDefaults.cardColors(
+        modifier = modifier,
+        colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.primaryContainer,
             contentColor = MaterialTheme.colorScheme.onPrimaryContainer
         )
@@ -148,28 +149,14 @@ fun ItemDetails(
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             ItemDetailsRow(
-                labelResId = R.string.nama,
-                itemDetail = pelanggan.nama, modifier = Modifier.padding(
-                    horizontal = 16.dp
-                )
-            )
-            ItemDetailsRow(
-                labelResId = R.string.telpon,
-                itemDetail = pelanggan.telpon, modifier = Modifier.padding(
-                    horizontal = 16.dp
-                )
-            )
-            ItemDetailsRow(
-                labelResId = R.string.alamat,
-                itemDetail = pelanggan.alamat,
+                labelResId = R.string.merk, itemDetail = kendaraan.merk,
                 modifier = Modifier.padding(
                     horizontal = 16.dp
                 )
             )
             ItemDetailsRow(
-                labelResId = R.string.treatment,
-                itemDetail = pelanggan.treatment,
-                modifier = Modifier.padding(
+                labelResId = R.string.plat,
+                itemDetail = kendaraan.plat, modifier = Modifier.padding(
                     horizontal = 16.dp
                 )
             )
@@ -179,17 +166,14 @@ fun ItemDetails(
 
 @Composable
 private fun ItemDetailsRow(
-    @StringRes
-    labelResId: Int,
-    itemDetail: String,
-    modifier: Modifier = Modifier
+    @StringRes labelResId: Int, itemDetail: String, modifier: Modifier = Modifier
 ) {
     Row(modifier = modifier) {
         Text(text = stringResource(labelResId))
         Spacer(modifier = Modifier.weight(1f))
         Text(
-            text = itemDetail,
-            fontWeight = FontWeight.Bold
+            text =
+            itemDetail, fontWeight = FontWeight.Bold
         )
     }
 }
@@ -200,7 +184,8 @@ private fun DeleteConfirmationDialog(
     onDeleteCancel: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    AlertDialog(onDismissRequest = { /*DoNothing*/ },
+    AlertDialog(
+        onDismissRequest = { /*DoNothing*/ },
         title = { Text(stringResource(R.string.attention)) },
         text = { Text(stringResource(R.string.delete)) },
         modifier = modifier,
