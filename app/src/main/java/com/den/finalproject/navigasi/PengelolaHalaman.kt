@@ -19,6 +19,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.den.finalproject.R
 import com.den.finalproject.WashXBetApp
+import com.den.finalproject.ui.halaman.AppHomeScreen
 import com.den.finalproject.ui.halaman.DestinasiDetailPemesanan
 import com.den.finalproject.ui.halaman.DestinasiEdit
 import com.den.finalproject.ui.halaman.DestinasiEntry
@@ -67,7 +68,7 @@ fun HostNavigasi(
         modifier = Modifier
     ) {
         composable(DestinasiHome.route) {
-            Homepage(navigateToRent = { navController.navigate(DestinasiPelanggan.route) })
+            AppHomeScreen(navigasiRent = { navController.navigate(DestinasiPelanggan.route) })
         }
         composable(DestinasiPelanggan.route) {
             PelangganScreen(

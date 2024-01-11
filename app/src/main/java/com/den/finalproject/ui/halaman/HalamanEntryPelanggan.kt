@@ -37,7 +37,7 @@ import com.den.finalproject.navigasi.WashTopAppBar
 import kotlinx.coroutines.launch
 
 object DestinasiEntry : DestinasiNavigasi {
-    override val route = ""
+    override val route = "entry"
     override val titleRes = R.string.entry_pelanggan
 }
 
