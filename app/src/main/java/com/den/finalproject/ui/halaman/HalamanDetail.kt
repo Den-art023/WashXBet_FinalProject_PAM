@@ -40,8 +40,16 @@ import com.den.finalproject.model.DetailsViewModel
 import com.den.finalproject.model.ItemDetailsUiState
 import com.den.finalproject.model.PenyediaViewModel
 import com.den.finalproject.model.toPelanggan
+import com.den.finalproject.navigasi.DestinasiNavigasi
 import com.den.finalproject.navigasi.WashTopAppBar
 import kotlinx.coroutines.launch
+
+object DestinasiDetailPemesanan : DestinasiNavigasi {
+    override val route = "item_details"
+    override val titleRes = R.string.detail
+    const val beliIdArg = "itemId"
+    val routeWithArgs = "$route/{$beliIdArg}"
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
