@@ -1,4 +1,4 @@
-package com.den.finalproject.ui
+package com.den.finalproject
 
 import android.app.Application
 import com.den.finalproject.repositori.ContainerApp

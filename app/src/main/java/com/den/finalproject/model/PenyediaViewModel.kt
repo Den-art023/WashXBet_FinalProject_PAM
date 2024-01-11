@@ -5,7 +5,7 @@ import androidx.lifecycle.createSavedStateHandle
 import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import com.den.finalproject.ui.WashXBetApp
+import com.den.finalproject.WashXBetApp
 
 object PenyediaViewModel {
     val Factory = viewModelFactory {
