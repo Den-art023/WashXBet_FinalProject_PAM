@@ -125,13 +125,14 @@ fun BodyPelanggan(
                 )
                 Column(modifier = Modifier.padding(16.dp)) {
                     Text(
-                        text = "Gaming",
-                        style = MaterialTheme.typography.titleMedium, maxLines = 2,
+                        text = "Treatment",
+                        style = MaterialTheme.typography.titleMedium,
+                        maxLines = 2,
                         overflow = TextOverflow.Ellipsis
                     )
                     Spacer(modifier = Modifier.height(5.dp))
                     Text(
-                        text = "Silahkan Beli Diamond Murah Meriah Hanya Di Toko Kami",
+                        text = "Silahkan!",
                         //maxLines = 1,
                         //overflow = TextOverflow.Ellipsis,
                         // style = MaterialTheme.typography.titleSmall,
