@@ -32,8 +32,14 @@ import com.den.finalproject.model.DetailPelanggan
 import com.den.finalproject.model.InputViewModel
 import com.den.finalproject.model.PenyediaViewModel
 import com.den.finalproject.model.UIStatePelanggan
+import com.den.finalproject.navigasi.DestinasiNavigasi
 import com.den.finalproject.navigasi.WashTopAppBar
 import kotlinx.coroutines.launch
+
+object DestinasiEntry : DestinasiNavigasi {
+    override val route = ""
+    override val titleRes = R.string.entry_pelanggan
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -58,11 +64,13 @@ fun PelangganScreen(
             onSaveClick = {
                 coroutineScope.launch {
                     viewModel.savePelanggan()
-                    navigateBack ()
+                    navigateBack()
                 }
             },
-            modifier = Modifier.padding(innerPadding)
-                .verticalScroll(rememberScrollState()).fillMaxWidth(),
+            modifier = Modifier
+                .padding(innerPadding)
+                .verticalScroll(rememberScrollState())
+                .fillMaxWidth(),
         )
     }
 }
