@@ -15,16 +15,24 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.den.finalproject.R
+import com.den.finalproject.WashXBetApp
 import com.den.finalproject.ui.halaman.DestinasiDetailPemesanan
 import com.den.finalproject.ui.halaman.DestinasiEdit
 import com.den.finalproject.ui.halaman.DestinasiEntry
 import com.den.finalproject.ui.halaman.DestinasiHome
+import com.den.finalproject.ui.halaman.DestinasiPelanggan
 import com.den.finalproject.ui.halaman.DetailsScreen
 import com.den.finalproject.ui.halaman.Homepage
 import com.den.finalproject.ui.halaman.ItemEditScreen
 import com.den.finalproject.ui.halaman.PelangganScreen
+
+@Composable
+fun WashXBetApp(navController: NavHostController = rememberNavController()) {
+    HostNavigasi(navController = navController)
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -59,9 +67,9 @@ fun HostNavigasi(
         modifier = Modifier
     ) {
         composable(DestinasiHome.route) {
-            Homepage(navigateToRent = { navController.navigate(DestinasiPelangggan.route) })
+            Homepage(navigateToRent = { navController.navigate(DestinasiPelanggan.route) })
         }
-        composable(DestinasiPelangggan.route) {
+        composable(DestinasiPelanggan.route) {
             PelangganScreen(
                 navigateToItemEntry = { navController.navigate(DestinasiEntry.route) },
                 onDetailClick = { navController.navigate("${DestinasiDetailPemesanan.route}/$it") })
