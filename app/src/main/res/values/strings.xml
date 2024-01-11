@@ -1,3 +1,30 @@
 <resources>
     <string name="app_name">FInalProject</string>
+    <string name="nama">Nama</string>
+    <string name="pelanggan">Pelanggan</string>
+    <string name="entry_pelanggan">Tambah Pelanggan</string>
+    <string name="telpon">Telepon</string>
+    <string name="alamat">Alamat</string>
+    <string name="merk">Merk</string>
+    <string name="plat">Plat Kendaraan</string>
+    <string name="login">Login</string>
+    <string name="signup">Sign Up</string>
+    <string name="submit">Submit</string>
+    <string name="confirm">Confirm</string>
+    <string name="back">Back</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
+    <string name="update">Edit</string>
+    <string name="next">Next</string>
+    <string name="detail">Detail</string>
+    <string name="subtotal">Subtotal : Rp %s</string>
+    <string name="menu">Menu</string>
+    <string name="attention">Attention</string>
+    <string name="desc">Tidak ada Data Pelanggan</string>
+    <string name="steam">Steam</string>
+    <string name="pilihan1">Car Wash</string>
+    <string name="pilihan2">Detailing</string>
+    <string name="pilihan3">Polishing</string>
+    <string name="pilihan4">Wrapping</string>
+    <string name="required_field">required fields</string>
 </resources>
