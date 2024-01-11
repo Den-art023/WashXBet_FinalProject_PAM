@@ -39,8 +39,13 @@ import com.den.finalproject.R
 import com.den.finalproject.data.Pelanggan
 import com.den.finalproject.model.PelangganViewModel
 import com.den.finalproject.model.PenyediaViewModel
+import com.den.finalproject.navigasi.DestinasiNavigasi
 import com.den.finalproject.navigasi.WashTopAppBar
 
+object DestinasiPelanggan : DestinasiNavigasi {
+    override val route = "beli"
+    override val titleRes = R.string.pelanggan
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -55,7 +60,7 @@ fun PelangganScreen(
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             WashTopAppBar(
-                title = stringResource(DestinasiPelangggan.titleRes),
+                title = stringResource(DestinasiPelanggan.titleRes),
                 canNavigateBack = false, scrollBehavior = scrollBehavior
             )
         },
