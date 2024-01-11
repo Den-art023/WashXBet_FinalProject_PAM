@@ -5,9 +5,11 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [Pelanggan::class], version = 1, exportSchema = false)
+@Database(entities = [Pelanggan::class, Kendaraan::class], version = 1, exportSchema = false)
 abstract class DatabaseCustomer : RoomDatabase() {
     abstract fun PelangganDao(): PelangganDao
+
+    abstract fun KendaraanDao(): KendaraanDao
 
     companion object {
         @Volatile
