@@ -11,14 +11,20 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
@@ -33,7 +39,47 @@ import com.den.finalproject.R
 import com.den.finalproject.data.Pelanggan
 import com.den.finalproject.model.PelangganViewModel
 import com.den.finalproject.model.PenyediaViewModel
+import com.den.finalproject.navigasi.WashTopAppBar
 
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun PelangganScreen(
+    navigateToItemEntry: () -> Unit,
+    modifier: Modifier = Modifier,
+    viewModel: PelangganViewModel = viewModel(factory = PenyediaViewModel.Factory),
+    onDetailClick: (Int) -> Unit = {},
+) {
+    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
+    Scaffold(
+        modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+        topBar = {
+            WashTopAppBar(
+                title = stringResource(DestinasiPelangggan.titleRes),
+                canNavigateBack = false, scrollBehavior = scrollBehavior
+            )
+        },
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = navigateToItemEntry, shape = MaterialTheme.shapes.medium,
+                modifier = Modifier.padding(20.dp)
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Add,
+                    contentDescription = stringResource(id = R.string.entry_pelanggan)
+                )
+            }
+        },
+    ) { innerPadding ->
+        val uiStatePelanggan by viewModel.pelangganUiState.collectAsState()
+        BodyPelanggan(
+            itemPelanggan = uiStatePelanggan.listPelanggan,
+            modifier = Modifier
+                .padding(innerPadding)
+                .fillMaxWidth(), onDetailClick = onDetailClick
+        )
+    }
+}
 
 @Composable
 fun BodyPelanggan(
