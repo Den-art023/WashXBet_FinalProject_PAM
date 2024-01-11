@@ -26,6 +26,32 @@ import com.den.finalproject.R
 import com.den.finalproject.model.DetailPelanggan
 import com.den.finalproject.model.UIStatePelanggan
 
+@Composable
+fun EntryPelangganBody(
+    uiStatePelanggan: UIStatePelanggan,
+    onPelangganValueChange: (DetailPelanggan) -> Unit,
+    onSaveClick: () -> Unit,
+    modifier: Modifier
+) {
+    Column(
+        Modifier
+            .fillMaxWidth()
+            .padding(20.dp),
+    ) {
+        FormInputPelanggan(detailPelanggan = uiStatePelanggan.detailPelanggan,
+            onValueChange = onPelangganValueChange,
+            onSaveClick = onSaveClick,
+            uiStatePelanggan = uiStatePelanggan,
+            pilihanTreatment = listOf(
+                stringResource(id = R.string.pilihan1),
+                stringResource(id = R.string.pilihan2),
+                stringResource(id = R.string.pilihan3),
+                stringResource(id = R.string.pilihan4)
+            ),
+            onSelectionChanged = { uiStatePelanggan.detailPelanggan.treatment })
+    }
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FormInputPelanggan(
