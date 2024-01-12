@@ -38,7 +38,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.den.finalproject.R
 import com.den.finalproject.data.Kendaraan
 import com.den.finalproject.model.PenyediaViewModel
-import com.den.finalproject.model.kendaraan.KendaraanViewModel
+import com.den.finalproject.model.kendaraan.HomeKendaraaanViewModel
 import com.den.finalproject.navigasi.DestinasiNavigasi
 import com.den.finalproject.navigasi.WashTopAppBar
 
@@ -52,7 +52,7 @@ object DestinasiKendaran : DestinasiNavigasi {
 fun KendaraanScreen(
     navigateToItemEntry: () -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: KendaraanViewModel = viewModel(factory = PenyediaViewModel.Factory),
+    viewModel: HomeKendaraaanViewModel = viewModel(factory = PenyediaViewModel.Factory),
     onDetailClick: (Int) -> Unit = {},
 ) {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
@@ -141,7 +141,7 @@ fun BodyKendaraan(
         }
         if (itemKendaraan.isEmpty()) {
             Text(
-                text = stringResource(id = R.string.desc), textAlign = TextAlign.Center,
+                text = stringResource(id = R.string.desc1), textAlign = TextAlign.Center,
                 style = MaterialTheme.typography.titleLarge,
             )
         } else {

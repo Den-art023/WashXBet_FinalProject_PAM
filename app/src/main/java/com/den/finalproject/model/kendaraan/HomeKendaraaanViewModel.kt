@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 
-class KendaraanViewModel(private val repositoriKendaraan: RepositoriKendaraan) : ViewModel() {
+class HomeKendaraaanViewModel(private val repositoriKendaraan: RepositoriKendaraan) : ViewModel() {
     companion object {
         private const val TIMEOUT_MILLIS = 5_000L
     }
@@ -23,8 +23,8 @@ class KendaraanViewModel(private val repositoriKendaraan: RepositoriKendaraan) :
                 started = SharingStarted.WhileSubscribed(TIMEOUT_MILLIS),
                 initialValue = KendaraanUiState()
             )
-
-    data class KendaraanUiState(
-        val listKendaraan: List<Kendaraan> = listOf()
-    )
 }
+
+data class KendaraanUiState(
+    val listKendaraan: List<Kendaraan> = listOf()
+)

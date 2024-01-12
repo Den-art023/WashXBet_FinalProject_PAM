@@ -117,7 +117,7 @@ fun BodyPelanggan(
             Column(modifier = Modifier.clickable(onClick = { }))
             {
                 Image(
-                    painter = painterResource(R.drawable.baner),
+                    painter = painterResource(R.drawable.pelanggan),
                     contentDescription = null, // decorative
                     contentScale = ContentScale.Crop,
                     modifier = Modifier

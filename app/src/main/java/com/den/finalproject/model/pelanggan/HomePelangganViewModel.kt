@@ -22,8 +22,8 @@ class HomePelangganViewModel(private val repositoriPelanggan: RepositoriPelangga
                 scope = viewModelScope, started = SharingStarted.WhileSubscribed(TIMEOUT_MILLIS),
                 initialValue = PelangganUiState()
             )
-
-    data class PelangganUiState(
-        val listPelanggan: List<Pelanggan> = listOf()
-    )
 }
+
+data class PelangganUiState(
+    val listPelanggan: List<Pelanggan> = listOf()
+)

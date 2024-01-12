@@ -27,6 +27,7 @@ import com.den.finalproject.ui.halaman.kendaraan.DestinasiDetailKendaraan
 import com.den.finalproject.ui.halaman.kendaraan.DestinasiEditKendaraan
 import com.den.finalproject.ui.halaman.kendaraan.DestinasiEntryKendaraan
 import com.den.finalproject.ui.halaman.kendaraan.DestinasiKendaran
+import com.den.finalproject.ui.halaman.kendaraan.KendaraanDetailsScreen
 import com.den.finalproject.ui.halaman.kendaraan.KendaraanEditScreen
 import com.den.finalproject.ui.halaman.kendaraan.KendaraanScreen
 import com.den.finalproject.ui.halaman.pelanggan.DestinasiPelanggan
@@ -123,7 +124,7 @@ fun HostNavigasi(
                 type = NavType.IntType
             })
         ) {
-            DetailsScreen(navigateToEditItem = { navController.navigate("${DestinasiEditKendaraan.route}/$it") },
+            KendaraanDetailsScreen(navigateToEditItem = { navController.navigate("${DestinasiEditKendaraan.route}/$it") },
                 navigasiBack = { navController.popBackStack() })
         }
         composable(
